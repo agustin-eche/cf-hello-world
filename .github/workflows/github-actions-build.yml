@@ -6,8 +6,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: 
-      name: tse-cf    
     steps:
       - name: Check out repository code    
         uses: actions/checkout@v3
@@ -18,8 +16,21 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package   
+  debug:
+    runs-on: ubuntu-latest
+    environment: 
+      name: tse-cf    
+    steps: 
+        - run: echo "cf_api- ${{ secrets.CF_API }}"
+        - run: echo "cf_username- ${{ secrets.CF_USER }}"
+        - run: echo "cf_password- ${{ secrets.CF_PASSWORD }}"
+        - run: echo "cf_org- ${{ secrets.CF_ORG }}"
+        - run: echo "cf_space- ${{ secrets.CF_SPACE }}"
+    
   deploy:
     runs-on: ubuntu-latest
+    environment: 
+      name: tse-cf    
     needs: build    
     steps:
     - uses: citizen-of-planet-earth/cf-cli-action@master
@@ -29,4 +40,5 @@ jobs:
         cf_password: ${{ secrets.CF_PASSWORD }}
         cf_org: ${{ secrets.CF_ORG }}
         cf_space: ${{ secrets.CF_SPACE }}
-        command: push cf-hello-world  
+        command: push cf-hello-world
+       
