@@ -5,7 +5,7 @@ on:
     branches: [ develop ]
 jobs:
   build_and_deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     environment: 
       name: tse-cf    
     steps:
@@ -21,6 +21,12 @@ jobs:
       - name: List files in the repository
         run: |
           ls -altr ${{ github.workspace }}
+#      - name: Keep build dir          
+#      - uses: actions/cache@v2
+#        id: cache-build
+#        with:
+#          path: ./*
+#          key: ${{ github.sha }}          
       - name: Deploy in Cloud Foundry
         uses: citizen-of-planet-earth/cf-cli-action@master
         with:
