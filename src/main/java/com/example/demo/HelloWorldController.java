@@ -8,7 +8,7 @@ public class HelloWorldController {
 
 	@GetMapping("/")
 	public String sendMailApi() {
-		return "Welcome to Pivotal Cloud Foundry...CLI";
+		return "Welcome to SAP BTP Cloud Foundry...CLI";
 	}
 
 }
