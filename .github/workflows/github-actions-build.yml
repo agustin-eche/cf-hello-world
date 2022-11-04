@@ -18,14 +18,11 @@ jobs:
         run: mvn --batch-mode --update-snapshots package   
   debug:
     runs-on: ubuntu-latest
-    environment: 
-      name: tse-cf    
+    needs: build
     steps: 
-        - run: echo "cf_api- ${{ secrets.CF_API }}"
-        - run: echo "cf_username- ${{ secrets.CF_USER }}"
-        - run: echo "cf_password- ${{ secrets.CF_PASSWORD }}"
-        - run: echo "cf_org- ${{ secrets.CF_ORG }}"
-        - run: echo "cf_space- ${{ secrets.CF_SPACE }}"
+      - name: List files in the repository
+        run: |
+          ls -altr ${{ github.workspace }}
     
   deploy:
     runs-on: ubuntu-latest
@@ -33,12 +30,13 @@ jobs:
       name: tse-cf    
     needs: build    
     steps:
-    - uses: citizen-of-planet-earth/cf-cli-action@master
-      with:
-        cf_api: ${{ secrets.CF_API }}
-        cf_username: ${{ secrets.CF_USER }}
-        cf_password: ${{ secrets.CF_PASSWORD }}
-        cf_org: ${{ secrets.CF_ORG }}
-        cf_space: ${{ secrets.CF_SPACE }}
-        command: push cf-hello-world -f ${{ github.workspace }}/manifest.yml
+      - name: Deploy in Cloud Foundry
+        uses: citizen-of-planet-earth/cf-cli-action@master
+        with:
+          cf_api: ${{ secrets.CF_API }}
+          cf_username: ${{ secrets.CF_USER }}
+          cf_password: ${{ secrets.CF_PASSWORD }}
+          cf_org: ${{ secrets.CF_ORG }}
+          cf_space: ${{ secrets.CF_SPACE }}
+          command: push cf-hello-world -f ${{ github.workspace }}/manifest.yml
        
