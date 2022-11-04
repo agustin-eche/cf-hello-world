@@ -18,9 +18,9 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package   
-      - name: List files in the repository
-        run: |
-          ls -altr ${{ github.workspace }}
+#      - name: List files in the repository
+#        run: |
+#          ls -altr ${{ github.workspace }}
 #      - name: Keep build dir          
 #      - uses: actions/cache@v2
 #        id: cache-build
