@@ -1,0 +1,10 @@
+---
+applications:
+- name: cf-hello-world
+  memory: 512M
+  host: spring-boot-helloworld
+  domain: cfapps.eu10.hana.ondemand.com
+  buildpack: sap_java_buildpack
+  path: target/cf-hello-world-0.0.1-SNAPSHOT.jar  
+  env:
+    JAVA_OPTS: -XX:MaxMetaspaceSize=106772K -Xss1M -Xmx200M -XX:ReservedCodeCacheSize=16M -XX:MaxDirectMemorySize=10M

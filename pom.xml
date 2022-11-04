@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Spring-Boot-HelloWorld</artifactId>
+	<artifactId>cf-hello-world</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring-Boot-HelloWorld</name>
+	<name>cf-hello-world</name>
 	<description>Spring-Boot-HelloWorld</description>
 
 	<properties>
