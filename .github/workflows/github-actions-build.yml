@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build    
     steps:
-    - uses: NickChecan/sap-btp-action
+    - uses: citizen-of-planet-earth/cf-cli-action@master
       with:
         cf_api: ${{ secrets.CF_API }}
         cf_username: ${{ secrets.CF_USER }}
