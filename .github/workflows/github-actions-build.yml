@@ -35,5 +35,5 @@ jobs:
           cf_password: ${{ secrets.CF_PASSWORD }}
           cf_org: ${{ secrets.CF_ORG }}
           cf_space: ${{ secrets.CF_SPACE }}
-          command: push cf-hello-world -f ${{ github.workspace }}/manifest.yml
+          command: push cf-hello-world -f /github/workspace/manifest.yml
        
