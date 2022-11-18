@@ -18,13 +18,16 @@ jobs:
           distribution: 'adopt'
       - name: maven-settings-xml-action
         uses: s4u/maven-settings-action@v2.8.0
-        with:
-          servers: |
-            [{
-            "id": "github-packages-server",
-            "username": "${{ secrets.GITHUB_PACKAGES_USERNAME }}",
-            "password": "${{ secrets.GITHUB_PACKAGES_PASSWORD }}"
-            }]         
+#        with:
+#          servers: |
+#            [{
+#            "id": "github-packages-server",
+#            "username": "${{ secrets.GITHUB_PACKAGES_USERNAME }}",
+#            "password": "${{ secrets.GITHUB_PACKAGES_PASSWORD }}"
+#            }]
+      - name: check settings.xml
+        id: vars
+        run: cat /home/runner/.m2/settings.xml
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package   
 #      - name: List files in the repository
