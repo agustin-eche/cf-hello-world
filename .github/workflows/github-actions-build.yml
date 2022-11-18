@@ -16,6 +16,10 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
+      - name: maven-settings-xml-action
+        uses: whelk-io/maven-settings-xml-action@v20
+        with:
+         servers: '[{ "id": "github-packages", "username": "agustin-eche", "password": "some.password" }]'          
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package   
 #      - name: List files in the repository
