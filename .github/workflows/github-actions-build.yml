@@ -25,12 +25,12 @@ jobs:
 #            "username": "${{ secrets.GITHUB_PACKAGES_USERNAME }}",
 #            "password": "${{ secrets.GITHUB_PACKAGES_PASSWORD }}"
 #            }]
-      - name: check settings.xml
+      - name: browse settings.xml
         id: vars
         run: cat /home/runner/.m2/settings.xml
 
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package   
+        run: mvn --batch-mode --update-snapshots deploy   
 #      - name: List files in the repository
 #        run: |
 #          ls -altr ${{ github.workspace }}
