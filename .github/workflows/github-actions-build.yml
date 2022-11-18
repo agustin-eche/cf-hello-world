@@ -17,9 +17,14 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
       - name: maven-settings-xml-action
-        uses: whelk-io/maven-settings-xml-action@v20
+        uses: s4u/maven-settings-action@v2.8.0
         with:
-         servers: '[{ "id": "github-packages", "username": "agustin-eche", "password": "some.password" }]'          
+          servers: |
+            [{
+            "id": "github-packages-server",
+            "username": "${{ secrets.GITHUB_PACKAGES_USERNAME }}",
+            "password": "${{ secrets.GITHUB_PACKAGES_PASSWORD }}"
+            }]         
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package   
 #      - name: List files in the repository
