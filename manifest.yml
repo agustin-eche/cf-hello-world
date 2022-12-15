@@ -2,7 +2,7 @@
 applications:
 - name: cf-hello-world
   memory: 512M
-  host: spring-boot-helloworld
+  host: cf-hello-world
   domain: cfapps.eu10.hana.ondemand.com
   buildpack: sap_java_buildpack
   path: target/cf-hello-world-0.0.1-SNAPSHOT.jar  
